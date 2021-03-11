@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html> <head> <style>
+<html> <head>
+    <title>List Page</title>
+     <style>
     .flex-container {
       display: flex;  flex-direction:row;
       background-color: red;
@@ -39,13 +41,28 @@
 <script>
 	function makeNewDiv(){
 		/* make the div and its text */
-		let element = document.createElement("div")
+        let flag =0
+        var listyItems = document.getElementsByClassName("listy")   
+		let element = document.createElement("div") 
 		element.innerHTML = document.getElementById("1").value
-        element.setAttribute("class","listy")
-		element.style.color = "orange"
-
+        element.setAttribute("class","listy")    
+        if(listyItems.length > 8){
+        for(i of listyItems){
+            if(i.innerHTML ==document.getElementById("1").value ){
+            i.remove()
+            console.log("We are getting rid of duplicates")
+            flag = 1
+            break
+        }
+            }
+            if(flag == 0){
+                index = Math.floor(Math.random()*8)
+            listyItems[index].remove()
+        }  
+        }
 		/* add it to the container */
 		document.getElementById('target').appendChild(element)
+        
 		
 	}
 </script>
